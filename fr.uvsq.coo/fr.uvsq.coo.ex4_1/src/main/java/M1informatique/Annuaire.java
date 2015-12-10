@@ -1,9 +1,8 @@
 package M1informatique;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Annuaire implements Organisation {
@@ -72,16 +71,30 @@ public class Annuaire implements Organisation {
 			ObjectOutputStream out = new ObjectOutputStream (
 					new BufferedOutputStream (
 							new FileOutputStream ( dataFile ) ) );
-				out.writeObject(this);
+				
+			 out.writeObject(this);
+			 out.close();
 		}catch(Exception e)
 		{
-			System.out.println("Erreur ecriture !");
+			System.out.println("Erreur ecriture !" + e);
 		}
 	}
 	
-	public void load()
-	{
-		
+	public Organisation load() throws Exception{
+		File dataFile = new File("annuaire");
+		Annuaire a;
+		try{
+			ObjectInputStream in = new ObjectInputStream (
+					new BufferedInputStream (
+							new FileInputStream ( dataFile ) ) );
+				
+			a = (Annuaire)(in.readObject());
+			in.close();
+		}catch(Exception e)
+		{
+			throw e;
+		}
+		return (Organisation)a;
 	}
 	
 }

@@ -1,9 +1,7 @@
 package M1informatique;
 
 import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -22,6 +20,9 @@ public final class Personnel implements Organisation {
 
 	private final String nom;
 	private final String prenom;
+	
+	public String getNom(){ return nom; }
+	public String getPrenom(){ return prenom; }
 
 	
 	private final LocalDate naissance;
@@ -82,19 +83,33 @@ public final class Personnel implements Organisation {
 	
 	public void save()
 	{
-		File dataFile = new File("annuaire");
+		File dataFile = new File("personnel");
 		try{
 			ObjectOutputStream out = new ObjectOutputStream (
 					new BufferedOutputStream (
 							new FileOutputStream ( dataFile ) ) );
-				out.writeObject(this);
+			out.writeObject(this);
+			out.close();
 		}catch(Exception e)
 		{
-			System.out.println("Erreur ecriture !");
+			System.out.println("Erreur ecriture !" + e);
 		}
 	}
 	
-	public void load(){
-		
+	public Organisation load() throws Exception{
+		File dataFile = new File("personnel");
+		Personnel p;
+		try{
+			ObjectInputStream in = new ObjectInputStream (
+					new BufferedInputStream (
+							new FileInputStream ( dataFile ) ) );
+				
+			p = (Personnel)(in.readObject());
+			in.close();
+		}catch(Exception e)
+		{
+			throw e;
+		}
+		return (Organisation)p;
 	}
 }

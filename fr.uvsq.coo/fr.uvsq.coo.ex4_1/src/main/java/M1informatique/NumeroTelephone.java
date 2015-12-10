@@ -1,6 +1,8 @@
 package M1informatique;
 
-public class NumeroTelephone {
+import java.io.Serializable;
+
+public class NumeroTelephone implements Serializable {
 	private String num;//Le numero est conserver dans une Sting
 	
 	public NumeroTelephone
