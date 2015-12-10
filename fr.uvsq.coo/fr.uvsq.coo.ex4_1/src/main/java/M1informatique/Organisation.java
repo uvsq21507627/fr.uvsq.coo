@@ -1,5 +1,9 @@
 package M1informatique;
 
-public interface Organisation {
+import java.io.Serializable;
+
+public interface Organisation extends Serializable {
 	public void afficher(int mode);
+	public void save();
+	public void load();
 }

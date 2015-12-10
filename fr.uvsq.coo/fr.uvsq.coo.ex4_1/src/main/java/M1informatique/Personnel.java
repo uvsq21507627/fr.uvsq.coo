@@ -1,5 +1,9 @@
 package M1informatique;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -76,4 +80,21 @@ public final class Personnel implements Organisation {
 		}
 	}
 	
+	public void save()
+	{
+		File dataFile = new File("annuaire");
+		try{
+			ObjectOutputStream out = new ObjectOutputStream (
+					new BufferedOutputStream (
+							new FileOutputStream ( dataFile ) ) );
+				out.writeObject(this);
+		}catch(Exception e)
+		{
+			System.out.println("Erreur ecriture !");
+		}
+	}
+	
+	public void load(){
+		
+	}
 }
