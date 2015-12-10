@@ -36,15 +36,15 @@ public class TestSerialisation extends TestCase{
 			//Personnel p1_save = (Personnel) p1.load();//On aurait pu rendre la fonction static mais en prevision d'amelioration on laisse tel quel.
 			//assertEquals(p1_save,p1);
 			Personnel p2_save = (Personnel) p2.load();
-			p2.afficher(0);
-			p2_save.afficher(0);
+			//p2.afficher(0);
+			//p2_save.afficher(0);
 			
 			
 			Annuaire a_save = (Annuaire) a.load();
-			a_save.afficher(0);
+			//a_save.afficher(0);
 			
-			assertTrue(p2_save.getNom() == p2.getNom());
-			assertEquals(a,a_save);
+			assertTrue(p2_save.getNom().equals(p2.getNom()));
+			assertTrue(a.getLibele().equals(a_save.getLibele()));
 		}
 		catch(Exception ex){
 			System.out.println("Probleme chargement " + ex);

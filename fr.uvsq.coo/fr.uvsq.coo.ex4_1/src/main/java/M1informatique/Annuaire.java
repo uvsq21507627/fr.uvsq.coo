@@ -15,6 +15,8 @@ public class Annuaire implements Organisation {
 		Libele = l;
 	}
 	
+	public String getLibele(){return Libele;}
+	
 	//Pour le parcour en largeur
 	//La fonction n'est pas fini
 	/*private ArrayList<Organisation> getContenue()
